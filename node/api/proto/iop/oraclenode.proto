@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package node;
+option go_package = "./node";
+
+message ValidateRequest {
+  bytes hash = 1;
+}
+
+message ValidateResponse {
+  bytes hash = 1;
+  bool valid = 2;
+  int64 blockNumber = 3;
+  bytes signature = 4;
+  bytes R = 5;
+  bytes message = 6;
+}
+
+service OracleNode {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+}
